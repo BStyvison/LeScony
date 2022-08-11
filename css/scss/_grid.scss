@@ -1,0 +1,20 @@
+.container {
+    width: 1200px;
+    margin: 0 auto;
+    background-color: blue;
+    &::after, &::before {
+        content: '';
+        display: table;
+        clear: both;
+    }
+
+    .grid_3 {
+        width: 280px;
+        margin-left: 10px;
+        margin-right: 10px;
+        background-color: rgba(0, 0, 0, .5);
+        color: white;
+        float: left;
+    }
+}
+
