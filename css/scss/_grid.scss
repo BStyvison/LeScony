@@ -1,20 +1,56 @@
-.container {
-    width: 1200px;
-    margin: 0 auto;
-    background-color: blue;
-    &::after, &::before {
-        content: '';
-        display: table;
-        clear: both;
+// variaveis do grid
+$colunas: 12;
+$gutter: 20px;
+$l-device: 1200px;
+$m-device: 760px;
+$s-device: 480px;
+
+// Box-sizing
+
+*, *::after, *::before {
+    box-sizing: border-box;
+}
+
+// mixins de midia-querie
+@mixin d($size) {
+    @if $size == l {
+        @media screen and (min-width: #{$l-device}) {
+            @content
+        }
+    }
+    @else if $size == m {
+        @media screen and (min-width: #{$m-device}) and (max-width: #{$l-device - 1} ){
+            @content
+        }
+    }
+    @else if $size == s {
+        @media screen and (max-width: #{$m-device - 1} ){
+            @content
+        }
     }
 
-    .grid_3 {
-        width: 280px;
-        margin-left: 10px;
-        margin-right: 10px;
-        background-color: rgba(0, 0, 0, .5);
-        color: white;
-        float: left;
-    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
