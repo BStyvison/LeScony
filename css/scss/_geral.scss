@@ -1,3 +1,7 @@
+@use "variaveis-e-mixins";
+
 body {
-    background-color: variaveis-e-mixins.$bege-claro;
+  background-color: variaveis-e-mixins.$bege-claro;
+  border: 10px solid variaveis-e-mixins.$bege-medio;
+  color: variaveis-e-mixins.$cinza;
 }
