@@ -5,31 +5,133 @@ $l-device: 1200px;
 $m-device: 760px;
 $s-device: 480px;
 
-// Box-sizing
+// Box-sizing//
 
 *, *::after, *::before {
     box-sizing: border-box;
 }
 
-// mixins de midia-querie
+// mixins de midia-queries
 @mixin d($size) {
     @if $size == l {
         @media screen and (min-width: #{$l-device}) {
-            @content
+            @content;
         }
-    }
+    } 
     @else if $size == m {
         @media screen and (min-width: #{$m-device}) and (max-width: #{$l-device - 1} ){
-            @content
+            @content;
         }
     }
     @else if $size == s {
         @media screen and (max-width: #{$m-device - 1} ){
-            @content
+            @content;
         }
     }
 
 }
+
+// função grid
+
+@function grid($col, $offset: false){
+    $width: calc($col / $colunas) * 100 + '%';
+    $resultados: calc(#{$width} - #{$gutter});
+    @if $offset == offset {
+        $gutter: calc(#{$gutter} / 2);
+        $resultados: calc(#{$width} + #{$gutter});
+    }
+    @return $resultados;
+}
+
+// Gera as classes de grid
+
+@for $i from 1 through $colunas {
+    .grid-#{$i} {
+        width: grid($i);
+    }
+}
+
+//mixin estrutura do grid
+@mixin grid-structure {
+    float: left;
+    min-height: 1px;
+    margin-left: calc(#{$gutter} / 2);
+    margin-right: calc(#{$gutter} / 2);
+    @include d(s) {
+      width: 100%;
+      float: none;
+      margin-left: 0px;
+      margin-right: 0px;
+    }
+  }
+  
+  [class^="grid-"] {
+    @include grid-structure;
+  }
+
+
+// Gera as classes de offset
+
+@for $i from 1 through $colunas {
+    .offset-#{$i} {
+        margin-left: grid($i, offset);
+        @extend %offset;
+    }
+}
+
+@include d(s) {
+    %offset {
+        margin-left: 0;
+    }
+}
+
+// Mixin clearfix
+
+@mixin clearfix {
+    &::after, &::before {
+        content: '';
+        display: table;
+        clear: both;
+    }
+}
+
+@mixin container {
+    max-width: $l-device;
+    margin: 0px auto;
+    position: relative;
+    @include d(m) {
+        max-width: $m-device;
+    }
+    @include d(s) {
+        max-width: $s-device;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+    @include clearfix;
+}
+
+.container {
+    @include container;
+}
+
+@mixin row {
+    position: relative;
+    margin-left: calc(- #{$gutter} / 2);
+    margin-right: calc(- #{$gutter} / 2);
+    @include d(s) {
+        margin-left: 0;
+        margin-right: 0;
+    }
+    @include clearfix;
+}
+
+.row {
+    @include row;
+}
+
+
+
+
 
 
 
