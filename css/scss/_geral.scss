@@ -1,7 +1,40 @@
 @use "variaveis-e-mixins";
+@use "grid";
 
 body {
   background-color: variaveis-e-mixins.$bege-claro;
   border: 10px solid variaveis-e-mixins.$bege-medio;
   color: variaveis-e-mixins.$cinza;
+  @include grid.d(s) {
+    border: none;
+  }
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+p {
+  @include variaveis-e-mixins.tipo-1(18);
+}
+
+.titulo {
+  text-transform: uppercase;
+  @include variaveis-e-mixins.tipo-1(18);
+  @include grid.d(s) {
+    margin-bottom: 40px;
+  }
+  &::after {
+    content: '';
+    display: block;
+    width: 70%;
+    float: right;
+    height: 2px;
+    background-color: variaveis-e-mixins.$cinza;
+    margin-top: 14px;
+    @include grid.d(m) {
+      width: 60%;
+    }
+  }
 }
