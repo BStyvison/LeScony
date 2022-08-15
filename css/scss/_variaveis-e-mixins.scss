@@ -34,4 +34,12 @@ $fonte-2: 'Aref Ruqaa', serif;
     }
 }
 
+@mixin boxshadow($shadow...){
+    -webkit-box-shadow: $shadow;
+    -mox-box-shadow: $shadow;
+    box-shadow: $shadow;
+    
+
+}
+
 

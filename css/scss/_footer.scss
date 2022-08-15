@@ -1,0 +1,21 @@
+@use "variaveis-e-mixins";
+@use "grid";
+
+footer {
+    padding: 20px 0;
+    background-color: variaveis-e-mixins.$cinza;
+    @include variaveis-e-mixins.boxshadow(0 0 0 10px variaveis-e-mixins.$cinza);
+    p {
+        color: variaveis-e-mixins.$bege-claro ;
+        @include grid.d(s) {
+            text-align: center;
+        }
+    }
+    a img {
+        float: right;
+        @include grid.d(s) {
+            float: none;
+            margin: 20px auto;
+        }
+    }
+}
